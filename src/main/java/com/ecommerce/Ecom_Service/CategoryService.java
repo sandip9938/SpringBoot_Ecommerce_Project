@@ -1,8 +1,12 @@
 package com.ecommerce.Ecom_Service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class CategoryService {
+import com.ecommerce.Ecom_Model.CategoryModel;
+
+
+public interface CategoryService {
     
+    List<CategoryModel> getAllCategories();
+    void createCategory(CategoryModel category);
 }

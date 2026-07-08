@@ -4,6 +4,10 @@ public class CategoryModel {
     private int categoryId;
     private String categoryName;
 
+    // No-arg constructor
+    public CategoryModel() {
+    }
+
     // Constructor
     public CategoryModel(int categoryId, String categoryName) {
         this.categoryId = categoryId;
