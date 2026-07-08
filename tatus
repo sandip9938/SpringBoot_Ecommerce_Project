@@ -1,0 +1,18 @@
+[33mcommit 9d8db79bbfe0ca283373b3487df905a63051f970[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Sandip Panda <sandippanda577@gmail.com>
+Date:   Wed Jul 8 22:25:09 2026 +0530
+
+    Initial commit
+
+A	.gitattributes
+A	.gitignore
+A	.mvn/wrapper/maven-wrapper.properties
+A	mvnw
+A	mvnw.cmd
+A	pom.xml
+A	src/main/java/com/ecommerce/Ecom_Controller/CategoryController.java
+A	src/main/java/com/ecommerce/Ecom_Model/CategoryModel.java
+A	src/main/java/com/ecommerce/Ecom_Service/CategoryService.java
+A	src/main/java/com/ecommerce/project/SbEcomApplication.java
+A	src/main/resources/application.properties
+A	src/test/java/com/ecommerce/project/SbEcomApplicationTests.java
