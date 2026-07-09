@@ -1,7 +1,7 @@
 package com.ecommerce.Ecom_Model;
 
 public class CategoryModel {
-    private int categoryId;
+    private long categoryId;
     private String categoryName;
 
     // No-arg constructor
@@ -15,11 +15,11 @@ public class CategoryModel {
     }
 
     // Getters and Setters
-    public int getCategoryId() {
+    public long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
     }
 
