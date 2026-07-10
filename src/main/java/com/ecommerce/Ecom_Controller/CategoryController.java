@@ -20,7 +20,7 @@ import com.ecommerce.Ecom_Model.CategoryModel;
 import com.ecommerce.Ecom_Service.CategoryService;
 
 @RestController
-@RequestMapping("/api")
+
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
