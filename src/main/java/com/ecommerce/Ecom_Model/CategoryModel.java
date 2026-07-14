@@ -1,7 +1,17 @@
 package com.ecommerce.Ecom_Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "categories")
 public class CategoryModel {
-    private long categoryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long categoryId;
     private String categoryName;
 
     // No-arg constructor
@@ -9,17 +19,17 @@ public class CategoryModel {
     }
 
     // Constructor
-    public CategoryModel(int categoryId, String categoryName) {
+    public CategoryModel(Long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
     // Getters and Setters
-    public long getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(long categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
