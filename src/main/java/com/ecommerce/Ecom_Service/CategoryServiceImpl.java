@@ -2,10 +2,9 @@ package com.ecommerce.Ecom_Service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.ecommerce.Ecom_Exception.ResourceNotFoundException;
 import com.ecommerce.Ecom_Model.CategoryModel;
 import com.ecommerce.Ecom_Repository.CategoryRepository;
 
@@ -36,8 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
 
         // Find the category by ID and remove it from the list
         CategoryModel categoryToDelete = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Category with ID " + categoryId + " not found."));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Category", "ID", categoryId));
 
         categoryRepository.delete(categoryToDelete);
         return "Category with ID " + categoryId + " deleted successfully!";
@@ -46,8 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public String updateCategory(long categoryId, CategoryModel category) {
         CategoryModel existingCategory = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Category with ID " + categoryId + " not found."));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Category", "ID", categoryId));
 
         if (category.getCategoryName() != null) {
             existingCategory.setCategoryName(category.getCategoryName());
