@@ -22,11 +22,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryModel> getAllCategories() {
         // Return the list of categories
+        if (categoryRepository.findAll().isEmpty()) {
+            throw new ResourceNotFoundException("No categories found.");
+        }
         return categoryRepository.findAll();
     }
 
     @Override
     public void createCategory(CategoryModel category) {
+        CategoryModel savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
+        if (savedCategory != null) {
+            throw new ResourceNotFoundException("Category with name " + category.getCategoryName() + " already exists.");
+        }   
         categoryRepository.save(category);
     }
 

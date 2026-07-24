@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import com.ecommerce.Ecom_Model.CategoryModel;
 import com.ecommerce.Ecom_Service.CategoryService;
@@ -42,23 +42,14 @@ public class CategoryController {
     // Endpoint to delete a category by ID
     @RequestMapping(value = "/api/public/categories/{id}/delete", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCategory(@PathVariable long id) {
-        try {
-            String status = categoryService.deleteCategory(id);
-            return new ResponseEntity<>(status, HttpStatus.OK);
-        } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }
+        String status = categoryService.deleteCategory(id);
+        return new ResponseEntity<>(status, HttpStatus.OK);
     }
 
     // Update category endpoint
     @RequestMapping(value = "/api/public/categories/{id}/update", method = RequestMethod.PUT)
     public ResponseEntity<String> updateCategories(@PathVariable long id, @RequestBody CategoryModel category) {
-        try {
-            String status = categoryService.updateCategory(id, category);
-            return new ResponseEntity<>(status, HttpStatus.OK);
-        } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }
+        String status = categoryService.updateCategory(id, category);
+        return new ResponseEntity<>(status, HttpStatus.OK);
     }
-
 }

@@ -35,4 +35,13 @@ public class My_Global_Exception_Handler {
         errorResponse.put("error", ex.getMessage());
         return ResponseEntity.badRequest().body(errorResponse);
     }
+
+@ExceptionHandler(ApiException.class)
+    public ResponseEntity<Map<String, String>> myApiExceptionEntity(ApiException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    
 }
