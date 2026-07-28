@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.Ecom_DTO.CategoryResponse;
 import com.ecommerce.Ecom_Exception.ResourceNotFoundException;
 import com.ecommerce.Ecom_Model.CategoryModel;
 import com.ecommerce.Ecom_Repository.CategoryRepository;
@@ -20,12 +21,12 @@ public class CategoryServiceImpl implements CategoryService {
     // private List<CategoryModel> categories = new ArrayList<>();
 
     @Override
-    public List<CategoryModel> getAllCategories() {
+    public CategoryResponse getAllCategories() {
         // Return the list of categories
         if (categoryRepository.findAll().isEmpty()) {
             throw new ResourceNotFoundException("No categories found.");
         }
-        return categoryRepository.findAll();
+        return new CategoryResponse(categoryRepository.findAll());
     }
 
     @Override

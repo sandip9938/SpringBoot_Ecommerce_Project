@@ -1,7 +1,8 @@
 package com.ecommerce.Ecom_DTO;
 
+import java.util.List;
+
 public class CategoryResponse {
-    public long categoryId;
-    public String categoryName;
+  private List<CategoryDTO> content;
     
 }
