@@ -1,7 +1,5 @@
 package com.ecommerce.Ecom_Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import com.ecommerce.Ecom_DTO.CategoryResponse;
 import com.ecommerce.Ecom_Model.CategoryModel;
 import com.ecommerce.Ecom_Service.CategoryService;
 
@@ -28,7 +27,7 @@ public class CategoryController {
 
     // Constructor to initialize sample categories
     @RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
-    public ResponseEntity<List<CategoryModel>> getAllCategories() {
+    public ResponseEntity<CategoryResponse> getAllCategories() {
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
