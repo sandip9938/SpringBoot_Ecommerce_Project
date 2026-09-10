@@ -51,8 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void createCategory(CategoryModel category) {
         CategoryModel savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
         if (savedCategory != null) {
-            throw new ResourceNotFoundException(
-                    "Category with name " + category.getCategoryName() + " already exists.");
+            throw new ApiException("Category with name " + category.getCategoryName() + " already exists.");
         }
         categoryRepository.save(category);
     }
@@ -75,7 +74,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Category", "ID", categoryId));
 
-        if (category.getCategoryName() != null) {
+        if (category.getCategoryName() != null && !category.getCategoryName().isBlank()) {
             existingCategory.setCategoryName(category.getCategoryName());
         }
 

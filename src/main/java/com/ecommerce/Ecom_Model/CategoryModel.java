@@ -24,4 +24,20 @@ public class CategoryModel {
     @Size(min = 2, max = 50, message = "Category name must be between 2 and 50 characters")
     private String categoryName;
 
+    public Long getCategoryId() {
+        return this.categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return this.categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
 }

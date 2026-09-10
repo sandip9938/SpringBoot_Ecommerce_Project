@@ -7,5 +7,12 @@ import lombok.Data;
 public class CategoryResponse {
 
   private List<CategoryDTO> content;
+  public List<CategoryDTO> getContent() {
+    return this.content;
+  }
+
+  public void setContent(List<CategoryDTO> content) {
+    this.content = content;
+  }
     
 }
