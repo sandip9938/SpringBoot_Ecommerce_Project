@@ -1,5 +1,7 @@
 package com.ecommerce.Ecom_DTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,21 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CategoryDTO {
     private long categoryId;
+
+    @NotBlank(message = "Category name cannot be blank")
+    @Size(min = 2, max = 50, message = "Category name must be between 2 and 50 characters")
     private String categoryName;
-
-    public long getCategoryId() {
-        return this.categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return this.categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
 }

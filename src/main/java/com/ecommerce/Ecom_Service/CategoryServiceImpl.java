@@ -23,13 +23,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
-   
     public CategoryServiceImpl(CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.categoryRepository = categoryRepository;
         this.modelMapper = modelMapper;
     }
-
-    // private List<CategoryModel> categories = new ArrayList<>();
 
     @Override
     public CategoryResponse getAllCategories() {
@@ -48,34 +45,33 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void createCategory(CategoryModel category) {
-        CategoryModel savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+        CategoryModel savedCategory = categoryRepository.findByCategoryName(categoryDTO.getCategoryName());
         if (savedCategory != null) {
-            throw new ApiException("Category with name " + category.getCategoryName() + " already exists.");
+            throw new ApiException("Category with name " + categoryDTO.getCategoryName() + " already exists.");
         }
-        categoryRepository.save(category);
+
+        CategoryModel category = modelMapper.map(categoryDTO, CategoryModel.class);
+        CategoryModel saved = categoryRepository.save(category);
+        return modelMapper.map(saved, CategoryDTO.class);
     }
 
     @Override
     public String deleteCategory(long categoryId) {
-
-        // Find the category by ID and remove it from the list
         CategoryModel categoryToDelete = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Category", "ID", categoryId));
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "ID", categoryId));
 
         categoryRepository.delete(categoryToDelete);
         return "Category with ID " + categoryId + " deleted successfully!";
     }
 
     @Override
-    public String updateCategory(long categoryId, CategoryModel category) {
+    public String updateCategory(long categoryId, CategoryDTO categoryDTO) {
         CategoryModel existingCategory = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Category", "ID", categoryId));
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "ID", categoryId));
 
-        if (category.getCategoryName() != null && !category.getCategoryName().isBlank()) {
-            existingCategory.setCategoryName(category.getCategoryName());
+        if (categoryDTO.getCategoryName() != null && !categoryDTO.getCategoryName().isBlank()) {
+            existingCategory.setCategoryName(categoryDTO.getCategoryName());
         }
 
         categoryRepository.save(existingCategory);
